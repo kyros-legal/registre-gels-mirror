@@ -1,0 +1,66 @@
+name: Sync registre national des gels
+
+on:
+  schedule:
+    # Toutes les 12 heures (00:05 UTC et 12:05 UTC)
+    - cron: "5 0,12 * * *"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/sync.yml"
+      - "scripts/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-registre
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Sync registre + build index
+        id: sync
+        run: |
+          set -euo pipefail
+          OUTPUT=$(bash scripts/sync.sh)
+          echo "$OUTPUT"
+          # Détermine si un changement a été produit
+          if echo "$OUTPUT" | tail -1 | grep -q '^CHANGED$'; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit & push (si changement)
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add registre.json index.json metadata.json
+          # Compose le message avec la date as_of pour traçabilité
+          AS_OF=$(python3 -c "import json; print(json.load(open('metadata.json')).get('as_of','?'))")
+          COUNT=$(python3 -c "import json; print(json.load(open('metadata.json')).get('count','?'))")
+          git commit -m "sync: snapshot DG Trésor du ${AS_OF} (${COUNT} mesures)"
+          git push
+
+      - name: Résumé
+        run: |
+          if [[ "${{ steps.sync.outputs.changed }}" == "true" ]]; then
+            echo "::notice title=Mirror mis à jour::Nouveau snapshot du registre des gels commité."
+          else
+            echo "::notice title=Pas de changement::Le registre DG Trésor n'a pas évolué depuis le dernier sync."
+          fi
