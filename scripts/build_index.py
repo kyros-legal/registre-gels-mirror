@@ -4,7 +4,7 @@
 Construit l'index slim et les métadonnées à partir du registre brut.
 
 Lit `registre.json` (réponse brute de l'API DG Trésor), produit :
-- `index.json` : liste allégée optimisée pour le matching côté consommateur
+- `index.json` : liste allégée optimisée pour le matching côté utilisateur
 - `metadata.json` : méta du snapshot (as_of, count, sha256, source_url, …)
 
 Usage :

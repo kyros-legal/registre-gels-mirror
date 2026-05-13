@@ -77,7 +77,7 @@ Chaque entrée de `index.json` (clé `entries`, tableau) :
 Le champ `_search` est une concaténation normalisée (transliteration ASCII,
 mise en majuscules, suppression des diacritiques, normalisation des espaces)
 de `Nom + " " + Prenoms` (PP/Navire) ou de `Nom + Alias` (PM). Il permet un
-matching simple par recherche de sous-chaîne côté consommateur, sans
+matching simple par recherche de sous-chaîne côté utilisateur, sans
 re-normaliser à chaque requête.
 
 ## Fréquence de mise à jour
@@ -124,8 +124,8 @@ sous licence **MIT** (voir `LICENSE`).
 
 ## Lien avec la skill `lcbft-check`
 
-Ce miroir est principalement consommé par la skill Claude `lcbft-check`,
-développée par le cabinet **Kyros Avocats** (Montpellier, AARPI) pour
+Ce miroir est principalement utilisé par la skill `lcbft-check`,
+développée par le **cabinet d'avocats KYROS** (Montpellier) pour
 automatiser les diligences LCB-FT des avocats français. Voir
 <https://github.com/kyros-legal/lcbft-check> (à venir).
 
