@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "as_of": "2026-05-26T11:04:45.1791989+02:00",
-  "generated_at": "2026-05-26T16:03:30+00:00",
+  "as_of": "2026-05-27T11:39:27.074546+02:00",
+  "generated_at": "2026-05-27T16:06:49+00:00",
   "source_url": "https://gels-avoirs.dgtresor.gouv.fr/ApiPublic/api/v1/publication/derniere-publication-fichier-json",
   "count": 6196,
   "counts_by_nature": {
@@ -9,6 +9,6 @@
     "Personne morale": 1665,
     "Navire": 38
   },
-  "sha256_registre": "db6e160ef5e9971ae4389e01491a6f18e78d548b23e30dda0d5bf3ae30b885ab",
-  "size_registre_bytes": 11168506
+  "sha256_registre": "0a263d8a5baaab4a3a1c5753f174d1e66960c95e879211cfe735d664303cd3b2",
+  "size_registre_bytes": 11170704
 }
