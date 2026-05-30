@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
-  "as_of": "2026-05-29T10:41:43.587217+02:00",
-  "generated_at": "2026-05-29T16:06:19+00:00",
+  "as_of": "2026-05-30T10:54:56.3161638+02:00",
+  "generated_at": "2026-05-30T13:59:08+00:00",
   "source_url": "https://gels-avoirs.dgtresor.gouv.fr/ApiPublic/api/v1/publication/derniere-publication-fichier-json",
-  "count": 6213,
+  "count": 6211,
   "counts_by_nature": {
-    "Personne physique": 4506,
+    "Personne physique": 4504,
     "Personne morale": 1669,
     "Navire": 38
   },
-  "sha256_registre": "9c8594fab4f651ec7a664661f50b5c078d9be0ab3d8472218879686424ea75ed",
-  "size_registre_bytes": 11198524
+  "sha256_registre": "b08ab8e941cb5f4cd7d31a75e50753fe767759001bd6cc27183d1a6b8e36f2b5",
+  "size_registre_bytes": 11197494
 }
